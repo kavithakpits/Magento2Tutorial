@@ -2,35 +2,46 @@
 
 namespace Boolfly\Brand\Model\Source;
 
-use Boolfly\Brand\Model\BrandFactory;
+use Boolfly\Brand\Model\ResourceModel\Brand\CollectionFactory;
 
 class Brand extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
 {
 
-    protected $brandFactory;
+    protected $_brandsFactory;
 
 
-    public function __construct(BrandFactory $brandFactory)
+    public function __construct(CollectionFactory $brandsFactory)
     {
-        $this->brandFactory = $brandFactory;
+        $this->_brandsFactory = $brandsFactory;
     }
 
-    public function getAllOptions()
+    public function getAllOptions($withEmpty = true)
     {
-        $i = 1;
-        $brandsCollection = $this->brandFactory->create()->getCollection();
+        if(!$this->_options) {
 
-        $option = [
-            'label' => __('Select'),
-            'value' => __('')
-        ];
-        foreach($brandsCollection as $brand) {
-            $option[] = [
-                'label' => $brand->getName(),
-                'value' => $brand->getEntityId()
-            ];
+            $brandsCollection = $this->_brandsFactory->create();
+
+            foreach($brandsCollection as $brand) {
+                $this->_options[] = [
+                    'label' => $brand->getName(),
+                    'value' => $brand->getEntityId()
+                ];
+            }
         }
-        return $option;
+
+        $none = [
+            ['label' => __('None'), 'value' => '0']
+        ];
+
+        if($withEmpty) {
+            if(!$this->_options) {
+                return $none;
+            } else {
+                return array_merge($none, $this->_options);
+            }
+        }
+
+        return $this->_options;
 
     }
 }

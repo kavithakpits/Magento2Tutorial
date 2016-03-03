@@ -14,17 +14,17 @@ class InstallData implements InstallDataInterface
      * EAV setup factory
      * @var EavSetupFactory
      */
-    private $eavSetupFactory;
+    private $_eavSetupFactory;
 
     public function __construct(EavSetupFactory $eavSetupFactory)
     {
-        $this->eavSetupFactory = $eavSetupFactory;
+        $this->_eavSetupFactory = $eavSetupFactory;
     }
 
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
         /** @var EavSetup $eavSetup*/
-        $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+        $eavSetup = $this->_eavSetupFactory->create(['setup' => $setup]);
 
         /**
          * Add attributes to the eav/attribute
