@@ -40,6 +40,13 @@ class InstallSchema implements InstallSchemaInterface
                 'URL Key'
             )
             ->addColumn(
+                'image',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                null,
+                ['nullable' => true],
+                'Image of brand'
+            )
+            ->addColumn(
                 'description',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 null,
