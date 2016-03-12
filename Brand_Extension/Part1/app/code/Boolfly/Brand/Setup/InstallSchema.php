@@ -55,9 +55,9 @@ class InstallSchema implements InstallSchemaInterface
             )
             ->addColumn(
                 'visibility',
-                \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+                \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
                 null,
-                ['nullable' => false],
+                ['nullable' => false, 'default' => '1'],
                 'Visibility'
             )
             ->setComment('Boolfly Brand Table.');
