@@ -13,15 +13,15 @@ class Delete extends \Magento\Backend\App\Action
     public function execute()
     {
         // check if we know what should be deleted
-        $entity_id = $this->getRequest()->getParam('entity_id');
+        $entityId = $this->getRequest()->getParam('entity_id');
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
 
-        if($entity_id) {
+        if($entityId) {
             try {
               //Init model and delete
                 $model = $this->_objectManager->create('Boolfly\Brand\Model\Brand');
-                $model->load($entity_id);
+                $model->load($entityId);
                 $model->delete();
                 //Display success message
                 $this->messageManager->addSuccess(__('The brand has been deleted.'));
@@ -33,7 +33,7 @@ class Delete extends \Magento\Backend\App\Action
                 //Display error message
                 $this->messageManager->addError($e->getMessage());
                 //Go back to edit form
-                return $resultRedirect->setPath('*/*/edit', ['entity_id' => $entity_id]);
+                return $resultRedirect->setPath('*/*/edit', ['entity_id' => $entityId]);
             }
         }
 

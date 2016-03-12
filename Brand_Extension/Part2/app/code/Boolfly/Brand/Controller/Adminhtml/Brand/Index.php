@@ -31,7 +31,7 @@ class Index extends \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Boolfly_Brand::brand');
+        return $this->_authorization->isAllowed('Boolfly_Brand::index');
     }
 
     public function execute()

@@ -12,18 +12,18 @@ class Save extends \Magento\Backend\App\Action
         if ($data) {
             /** @var \Boolfly\Brand\Model\Brand $model */
             $model = $this->_objectManager->create('Boolfly\Brand\Model\Brand');
-            $id = $this->getRequest()->getParam('id');
-            if ($id) {
-                $model->load($id);
+            $entityId = $this->getRequest()->getParam('entity_id');
+            if ($entityId) {
+                $model->load($entityId);
             }
             $model->setData($data);
 
             try {
-                //$model->save();
+                $model->save();
                 $this->messageManager->addSuccess(__('You saved this Brand.'));
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setFormData(false);
                 if ($this->getRequest()->getParam('back')) {
-                    return $resultRedirect->setPath('boolfly_brand/*/edit', ['id' => $model->getId(), '_current' => true]);
+                    return $resultRedirect->setPath('boolfly_brand/*/edit', ['entity_id' => $model->getId(), '_current' => true]);
                 }
                 return $resultRedirect->setPath('*/*/');
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
@@ -34,7 +34,7 @@ class Save extends \Magento\Backend\App\Action
                 $this->messageManager->addException($e, __('Something went wrong while saving the post.'));
             }
             $this->_getSession()->setFormData($data);
-            return $resultRedirect->setPath('boolfly_brand/*/edit', ['id' => $this->getRequest()->getParam('id')]);
+            return $resultRedirect->setPath('boolfly_brand/*/edit', ['entity_id' => $this->getRequest()->getParam('entity_id')]);
         }
         return $resultRedirect->setPath('*/*/');
     }

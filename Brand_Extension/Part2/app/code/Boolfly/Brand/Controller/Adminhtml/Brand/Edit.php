@@ -38,11 +38,11 @@ class Edit extends \Magento\Backend\App\Action
     public function execute()
     {
         //Get ID and create model
-        $id = $this->getRequest()->getParam('id');
+        $entityId = $this->getRequest()->getParam('entity_id');
         $model = $this->_objectManager->create('Boolfly\Brand\Model\Brand');
 
-        if($id) {
-            $model->load($id);
+        if($entityId) {
+            $model->load($entityId);
             if(!$model->getId()) {
                 $this->messageManager->addError(__('This brand no longer exists.'));
                 /** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
@@ -64,13 +64,13 @@ class Edit extends \Magento\Backend\App\Action
         //Build edit form
         $resultPage = $this->_initAction();
         $resultPage->addBreadcrumb(
-            $id ? __('Edit Brand') : __('New Brand'),
-            $id ? __('Edit Page') : __('New Brand')
+            $entityId ? __('Edit Brand') : __('New Brand'),
+            $entityId ? __('Edit Brand') : __('New Brand')
         );
 
         $resultPage->getConfig()->getTitle()->prepend(__('Boolfly Brand'));
         $resultPage->getConfig()->getTitle()
-            ->prepend($model->getId() ? $model->getTitle() : __('New Brand'));
+            ->prepend($model->getId() ? $model->getName() : __('New Brand'));
 
         return $resultPage;
 

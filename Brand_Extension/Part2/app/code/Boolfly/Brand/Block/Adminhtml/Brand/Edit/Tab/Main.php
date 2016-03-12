@@ -10,7 +10,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
      */
     protected $_systemStore;
     /**
-     * @var \Boolfly\Brand\Model\Brand\Visibility
+     * @var \Boolfly\Brand\Model\Source\Visibility
      */
     protected $_visibility;
     /**
@@ -25,7 +25,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Store\Model\System\Store $systemStore,
-        \Boolfly\Brand\Model\Brand\Visibility $visibility,
+        \Boolfly\Brand\Model\Source\Visibility $visibility,
         array $data = []
     ) {
         $this->_systemStore = $systemStore;
@@ -74,7 +74,6 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
      */
     protected function _prepareForm()
     {
-//        var_dump(2345);die;
         $model = $this->_coreRegistry->registry('boolfly_brand');
         $isElementDisabled = false;
 
@@ -83,7 +82,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
         $form->setHtmlIdPrefix('item_');
         $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Item Information')]);
         if ($model->getId()) {
-            $fieldset->addField('id', 'hidden', ['name' => 'id']);
+            $fieldset->addField('entity_id', 'hidden', ['name' => 'entity_id']);
         }
         $fieldset->addField(
             'name',
@@ -97,7 +96,18 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
             ['name' => 'url_key', 'label' => __('Url Key'), 'title' => __('Url Key'), 'required' => false]
         );
 
-
+        $fieldset->addField(
+            'visibility',
+            'select',
+            [
+                'label' => __('Visibility'),
+                'title' => __('Visibility'),
+                'name' => 'visibility',
+                'required' => true,
+                'options' => $model->getVisibilities(),
+                'disabled' => $isElementDisabled
+            ]
+        );
 
 
         $form->setValues($model->getData());

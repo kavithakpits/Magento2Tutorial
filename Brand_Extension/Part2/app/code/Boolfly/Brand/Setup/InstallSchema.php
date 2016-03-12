@@ -40,6 +40,13 @@ class InstallSchema implements InstallSchemaInterface
                 'URL Key'
             )
             ->addColumn(
+                'image',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                null,
+                ['nullable' => true],
+                'Image of brand'
+            )
+            ->addColumn(
                 'description',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 null,
@@ -48,9 +55,9 @@ class InstallSchema implements InstallSchemaInterface
             )
             ->addColumn(
                 'visibility',
-                \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+                \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
                 null,
-                ['nullable' => false],
+                ['nullable' => false, 'default' => '1'],
                 'Visibility'
             )
             ->setComment('Boolfly Brand Table.');
