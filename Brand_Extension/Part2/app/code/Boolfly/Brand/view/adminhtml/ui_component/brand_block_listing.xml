@@ -176,7 +176,7 @@
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="editorConfig" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">cms_page_listing.cms_page_listing.cms_page_columns.ids</item>
+                    <item name="selectProvider" xsi:type="string">brand_block_listing.brand_block_listing.brand_columns.ids</item>
                     <item name="enabled" xsi:type="boolean">true</item>
                     <item name="indexField" xsi:type="string">page_id</item>
                     <item name="clientConfig" xsi:type="array">
