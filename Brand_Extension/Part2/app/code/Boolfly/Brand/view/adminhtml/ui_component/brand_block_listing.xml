@@ -119,7 +119,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="blog/post/massDelete"/>
+                        <item name="url" xsi:type="url" path="boolfly_brand/brand/massDelete"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Delete items</item>
                             <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
@@ -132,7 +132,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">disable</item>
                         <item name="label" xsi:type="string" translate="true">Disable</item>
-                        <item name="url" xsi:type="url" path="boolfly_brand/post/massDisable"/>
+                        <item name="url" xsi:type="url" path="boolfly_brand/brand/massDisable"/>
                     </item>
                 </argument>
             </action>
@@ -141,7 +141,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">enable</item>
                         <item name="label" xsi:type="string" translate="true">Enable</item>
-                        <item name="url" xsi:type="url" path="boolfly_brand/post/massEnable"/>
+                        <item name="url" xsi:type="url" path="boolfly_brand/brand/massEnable"/>
                     </item>
                 </argument>
             </action>
