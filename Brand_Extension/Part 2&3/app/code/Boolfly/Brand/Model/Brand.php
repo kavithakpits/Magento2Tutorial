@@ -12,7 +12,7 @@ class Brand extends \Magento\Framework\Model\AbstractModel
         $this->_init('Boolfly\Brand\Model\ResourceModel\Brand');
     }
 
-    public static function getVisibilities()
+    public function getVisibilities()
     {
         return [
             self::VISIBILITY_HIDDEN => __('Hidden'),
