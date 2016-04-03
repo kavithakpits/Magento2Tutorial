@@ -104,7 +104,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
                 'title' => __('Visibility'),
                 'name' => 'visibility',
                 'required' => true,
-                'options' => $model->getVisibilities(),
+                'options' => \Boolfly\Brand\Model\Brand::getVisibilities(),
                 'disabled' => $isElementDisabled
             ]
         );
