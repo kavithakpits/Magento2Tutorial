@@ -1,0 +1,17 @@
+<?php /** @var $this Boolfly\Brand\Block\BrandList*/ ?>
+<?php /** @var $block Boolfly\Brand\Block\BrandList*/ ?>
+<h4><?php echo __('Brands Listing')?></h4>
+<?php $brands = $block->getBrandsList();?>
+<div class="boolfly-brand-index-index">
+    <?php if($brands->count()):?>
+        <ul>
+            <?php foreach($brands as $brand):?>
+                <li>
+                    <a href="<?php echo $brand->getUrlKey()?>">
+                    <div class="brand-name"><?php echo $brand->getName();?></div>
+                    </a>
+                </li>
+            <?php endforeach;?>
+        </ul>
+    <?php endif; ?>
+</div>

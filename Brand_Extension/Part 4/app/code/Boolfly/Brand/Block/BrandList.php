@@ -3,7 +3,7 @@
 namespace Boolfly\Brand\Block;
 
 use Magento\Framework\View\Element\Template\Context;
-use Boolfly\Brand\Model\ResourceModel\Brand\CollectionFactory as BrandCollection;
+use Boolfly\Brand\Model\ResourceModel\Brand\CollectionFactory as BrandCollectionFactory;
 
 class BrandList extends \Magento\Framework\View\Element\Template
 {
@@ -16,20 +16,27 @@ class BrandList extends \Magento\Framework\View\Element\Template
     /**
      * Brand Listing constructor.
      * @param Context $context
-     * @param BrandCollection $brandCollectionFactory
+     * @param BrandCollectionFactory $brandCollectionFactory
      * @param array $data
      */
     public function __construct(
         Context $context,
-        BrandCollection $brandCollectionFactory,
-        array $data)
+        BrandCollectionFactory $brandCollectionFactory,
+        array $data = []
+    )
     {
         parent::__construct($context, $data);
         $this->_brandCollectionFactory = $brandCollectionFactory;
     }
 
-    public function getBrandList()
+    public function getBrandsList()
     {
-
+        if (!$this->hasData('brands')) {
+            $brands = $this->_brandCollectionFactory
+                ->create()
+                ->addFilter('visibility', 1);
+            $this->setData('brands', $brands);
+        }
+        return $this->getData('brands');
     }
 }
